@@ -13,14 +13,14 @@ class Dev < ActiveRecord::Base
         dev_companies
     end
     def received_one?(item_name)
-        if freebies.select{|freebie| freebie.item_name == item_name}.length > 0
+        if self.freebies.select{|freebie| freebie.item_name == item_name}.length > 0
             return true
         else
             return false
         end
     end
     def give_away(dev, freebie)
-        if freebies.include? freebie
+        if self.freebies.include? freebie
             Freebie.create(
                 item_name: freebie.item_name,
                 value: freebie.value,
